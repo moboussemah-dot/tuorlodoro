@@ -1,3 +1,4 @@
+// @ts-nocheck -- third-party WebGL component, kept verbatim
 "use client";
 
 import * as React from "react";
