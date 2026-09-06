@@ -77,14 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { title: "Tuorlo d'Oro — Uova bio dal Valdarno" },
+      {
+        name: "description",
+        content:
+          "Uova biologiche da una sola fattoria del Valdarno, Toscana. Scegli bianche, marroni o miste: raccolte a mano e consegnate a casa in 48 ore.",
+      },
+      { property: "og:title", content: "Tuorlo d'Oro — Uova bio dal Valdarno" },
+      {
+        property: "og:description",
+        content: "Uova bio da galline felici, deposte questa settimana e consegnate a casa tua.",
+      },
+      { property: "og:type", content: "website" },      {
+        name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
@@ -97,7 +102,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400..700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/favicon.svg" },
+      { rel: "shortcut icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "manifest",
+        href: "/site.webmanifest",
+        type: "application/manifest+json",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -108,7 +120,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="it">
       <head>
         <HeadContent />
       </head>

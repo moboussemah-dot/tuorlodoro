@@ -41,7 +41,7 @@ export function AnimatedTabs({ tabs, value, onChange, className }: AnimatedTabsP
       <div
         ref={containerRef}
         aria-hidden
-        className="absolute inset-1 z-10 overflow-hidden bg-foreground transition-[clip-path] duration-300 ease-out"
+        className="pointer-events-none absolute inset-1 z-10 overflow-hidden bg-foreground transition-[clip-path] duration-300 ease-out"
         style={{ clipPath: "inset(0 100% 0 0 round 999px)" }}
       >
         <div className="relative flex w-full">

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-label="Cesto di vimini con uova bianche e marroni">
+  <defs>
+    <radialGradient id="gWhite" cx="38%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#f7f1e6"/>
+      <stop offset="100%" stop-color="#ddd1ba"/>
+    </radialGradient>
+    <radialGradient id="gBrown" cx="38%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#d09a5a"/>
+      <stop offset="55%" stop-color="#a06a2f"/>
+      <stop offset="100%" stop-color="#77451d"/>
+    </radialGradient>
+    <linearGradient id="gBasket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c08a3e"/>
+      <stop offset="45%" stop-color="#a97432"/>
+      <stop offset="100%" stop-color="#7a4c1e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- soft studio background -->
+  <rect width="420" height="420" fill="#f8f4ec"/>
+
+  <!-- ground shadow -->
+  <ellipse cx="210" cy="356" rx="150" ry="13" fill="#3a2a14" opacity="0.07"/>
+  <ellipse cx="210" cy="356" rx="88" ry="7" fill="#3a2a14" opacity="0.12"/>
+
+  <g transform="translate(0 -10)">
+    <!-- dark opening inside the basket -->
+    <ellipse cx="210" cy="248" rx="102" ry="20" fill="#4a2f10" opacity="0.92"/>
+    <!-- back lip of the rim -->
+    <ellipse cx="210" cy="248" rx="102" ry="16" fill="none" stroke="#6e4519" stroke-width="3" opacity="0.7"/>
+
+    <!-- back row of eggs (peeking above the rim) -->
+    <g transform="rotate(-8 170 228)">
+      <path d="M 170 252 C 152.72 241.92 146 225.12 159.2 205.2 C 167.6 197.28 172.4 197.28 180.8 205.2 C 194 225.12 187.28 241.92 170 252 Z" fill="url(#gBrown)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.35"/>
+      <ellipse cx="162" cy="216" rx="5.5" ry="8" transform="rotate(-18 162 216)" fill="#ecc084" opacity="0.55"/>
+    </g>
+    <g transform="rotate(2 210 218)">
+      <path d="M 210 242 C 192.72 231.92 186 215.12 199.2 195.2 C 207.6 187.28 212.4 187.28 220.8 195.2 C 234 215.12 227.28 231.92 210 242 Z" fill="url(#gWhite)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.22"/>
+      <ellipse cx="202" cy="206" rx="5.5" ry="8" transform="rotate(-18 202 206)" fill="#ffffff" opacity="0.5"/>
+    </g>
+    <g transform="rotate(9 250 226)">
+      <path d="M 250 250 C 232.72 239.92 226 223.12 239.2 203.2 C 247.6 195.28 252.4 195.28 260.8 203.2 C 274 223.12 267.28 239.92 250 250 Z" fill="url(#gBrown)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.35"/>
+      <ellipse cx="242" cy="214" rx="5.5" ry="8" transform="rotate(-18 242 214)" fill="#ecc084" opacity="0.55"/>
+    </g>
+    <g transform="rotate(15 292 236)">
+      <path d="M 292 260 C 274.72 249.92 268 233.12 281.2 213.2 C 289.6 205.28 294.4 205.28 302.8 213.2 C 316 233.12 309.28 249.92 292 260 Z" fill="url(#gWhite)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.22"/>
+      <ellipse cx="284" cy="224" rx="5.5" ry="8" transform="rotate(-18 284 224)" fill="#ffffff" opacity="0.5"/>
+    </g>
+
+    <!-- wicker basket body -->
+    <path d="M 108 254 C 132 242 288 242 312 254 C 316 258 320 262 322 268 C 320 308 296 350 252 374 C 236 383 184 383 168 374 C 124 350 100 308 98 268 C 102 262 106 258 108 254 Z" fill="url(#gBasket)"/>
+    <!-- horizontal weave bands -->
+    <g fill="none" stroke="#5f3c14" stroke-width="5" stroke-linecap="round" opacity="0.3">
+      <path d="M 103 285 C 150 275 270 275 317 285"/>
+      <path d="M 106 305 C 152 295 268 295 314 305"/>
+      <path d="M 111 325 C 155 316 265 316 309 325"/>
+      <path d="M 118 345 C 160 337 260 337 302 345"/>
+      <path d="M 128 360 C 165 353 255 353 292 360"/>
+    </g>
+    <!-- vertical weave uprights -->
+    <g fill="none" stroke="#4a2b0e" stroke-width="6" stroke-linecap="round" opacity="0.16">
+      <path d="M 126 262 C 121 300 127 340 142 362"/>
+      <path d="M 158 257 C 151 302 158 344 174 369"/>
+      <path d="M 190 253 C 186 302 192 348 208 373"/>
+      <path d="M 222 253 C 228 302 222 348 238 373"/>
+      <path d="M 254 257 C 261 302 254 344 270 369"/>
+      <path d="M 286 262 C 291 300 285 340 300 362"/>
+    </g>
+
+    <!-- front row of eggs (sitting on the rim) -->
+    <g transform="rotate(-12 146 256)">
+      <path d="M 146 282 C 127.28 271.08 120 252.88 134.3 231.3 C 143.4 222.72 148.6 222.72 157.7 231.3 C 172 252.88 164.72 271.08 146 282 Z" fill="url(#gWhite)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.22"/>
+      <ellipse cx="137" cy="243" rx="6" ry="9" transform="rotate(-18 137 243)" fill="#ffffff" opacity="0.5"/>
+    </g>
+    <g transform="rotate(-3 190 246)">
+      <path d="M 190 272 C 171.28 261.08 164 242.88 178.3 221.3 C 187.4 212.72 192.6 212.72 201.7 221.3 C 216 242.88 208.72 261.08 190 272 Z" fill="url(#gWhite)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.22"/>
+      <ellipse cx="181" cy="233" rx="6" ry="9" transform="rotate(-18 181 233)" fill="#ffffff" opacity="0.5"/>
+    </g>
+    <g transform="rotate(0 212 268)">
+      <path d="M 212 294 C 193.28 283.08 186 264.88 200.3 243.3 C 209.4 234.72 214.6 234.72 223.7 243.3 C 238 264.88 230.72 283.08 212 294 Z" fill="url(#gBrown)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.35"/>
+      <ellipse cx="203" cy="255" rx="6" ry="9" transform="rotate(-15 203 255)" fill="#ecc084" opacity="0.55"/>
+    </g>
+    <g transform="rotate(8 252 248)">
+      <path d="M 252 274 C 233.28 263.08 226 244.88 240.3 223.3 C 249.4 214.72 254.6 214.72 263.7 223.3 C 278 244.88 270.72 263.08 252 274 Z" fill="url(#gWhite)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.22"/>
+      <ellipse cx="243" cy="235" rx="6" ry="9" transform="rotate(-18 243 235)" fill="#ffffff" opacity="0.5"/>
+    </g>
+    <g transform="rotate(14 288 258)">
+      <path d="M 288 284 C 269.28 273.08 262 254.88 276.3 233.3 C 285.4 224.72 290.6 224.72 299.7 233.3 C 314 254.88 306.72 273.08 288 284 Z" fill="url(#gBrown)" stroke="#5c3613" stroke-width="1" stroke-opacity="0.35"/>
+      <ellipse cx="279" cy="245" rx="6" ry="9" transform="rotate(-15 279 245)" fill="#ecc084" opacity="0.55"/>
+    </g>
+
+    <!-- front rim band -->
+    <path d="M 98 268 C 140 250 280 250 322 268 C 280 284 140 284 98 268 Z" fill="#8a5a26"/>
+    <path d="M 106 269 C 148 257 272 257 314 269" fill="none" stroke="#4a2b0e" stroke-width="3" opacity="0.4"/>
+    <path d="M 104 261 C 145 247 275 247 316 261" fill="none" stroke="#d9a55f" stroke-width="2.5" opacity="0.65"/>
+
+    <!-- arched braided handle -->
+    <path d="M 112 256 C 112 128 308 128 308 256" fill="none" stroke="#6e4519" stroke-width="17" stroke-linecap="round"/>
+    <path d="M 112 256 C 112 128 308 128 308 256" fill="none" stroke="#b57c36" stroke-width="11" stroke-linecap="round"/>
+    <path d="M 112 256 C 112 128 308 128 308 256" fill="none" stroke="#6e4519" stroke-width="4.5" stroke-dasharray="9 8" stroke-linecap="round"/>
+    <path d="M 112 256 C 112 128 308 128 308 256" fill="none" stroke="#e6b571" stroke-width="2.5" opacity="0.5"/>
+  </g>
+</svg>

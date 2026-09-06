@@ -1,0 +1,11 @@
+{
+  "name": "Tuorlo d'Oro",
+  "short_name": "Tuorlo",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "theme_color": "#141414",
+  "background_color": "#f9f7f2",
+  "display": "standalone",
+  "description": "Uova biologiche da una sola fattoria del Valdarno"
+}

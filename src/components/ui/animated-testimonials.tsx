@@ -1,31 +1,31 @@
-"use client";
+"use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { Quote, Star } from "lucide-react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Separator } from "@/components/ui/separator"
+import { Quote, Star } from "lucide-react"
+import { AnimatePresence, motion, useAnimation, useInView } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 
 export interface Testimonial {
-  id: number;
-  name: string;
-  role: string;
-  company: string;
-  content: string;
-  rating: number;
-  avatar: string;
+  id: number
+  name: string
+  role: string
+  company: string
+  content: string
+  rating: number
+  avatar: string
 }
 
 export interface AnimatedTestimonialsProps {
-  title?: string;
-  subtitle?: string;
-  badgeText?: string;
-  testimonials?: Testimonial[];
-  autoRotateInterval?: number;
-  trustedCompanies?: string[];
-  trustedCompaniesTitle?: string;
-  className?: string;
+  title?: string
+  subtitle?: string
+  badgeText?: string
+  testimonials?: Testimonial[]
+  autoRotateInterval?: number
+  trustedCompanies?: string[]
+  trustedCompaniesTitle?: string
+  className?: string
 }
 
 export function AnimatedTestimonials({
@@ -38,34 +38,48 @@ export function AnimatedTestimonials({
   trustedCompaniesTitle = "Trusted worldwide",
   className,
 }: AnimatedTestimonialsProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const controls = useAnimation();
+  const [activeIndex, setActiveIndex] = useState(0)
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
+  const controls = useAnimation()
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
-  };
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-  };
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  }
 
   useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [isInView, controls]);
+    if (isInView) controls.start("visible")
+  }, [isInView, controls])
 
   useEffect(() => {
-    if (autoRotateInterval <= 0 || testimonials.length <= 1) return;
+    if (autoRotateInterval <= 0 || testimonials.length <= 1) return
     const i = setInterval(
       () => setActiveIndex((c) => (c + 1) % testimonials.length),
       autoRotateInterval,
-    );
-    return () => clearInterval(i);
-  }, [autoRotateInterval, testimonials.length]);
+    )
+    return () => clearInterval(i)
+  }, [autoRotateInterval, testimonials.length])
 
-  if (testimonials.length === 0) return null;
+  if (testimonials.length === 0) return null
 
   return (
     <section ref={sectionRef} className={cn("relative overflow-hidden py-24", className)}>
@@ -109,59 +123,55 @@ export function AnimatedTestimonials({
             </motion.div>
           </div>
 
-          {/* Right: stacked cards */}
-          <motion.div variants={itemVariants} className="relative h-[22rem] sm:h-[20rem]">
-            {testimonials.map((t, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <motion.article
-                  key={t.id}
-                  initial={false}
-                  animate={{
-                    opacity: isActive ? 1 : 0,
-                    scale: isActive ? 1 : 0.94,
-                    y: isActive ? 0 : 16,
-                    rotate: isActive ? 0 : index % 2 ? 1.5 : -1.5,
-                  }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className={cn(
-                    "absolute inset-0 flex flex-col justify-between rounded-3xl border border-border bg-card p-8 shadow-soft",
-                    isActive ? "z-10" : "pointer-events-none z-0",
-                  )}
-                  aria-hidden={!isActive}
-                >
-                  <div>
-                    <div className="flex gap-1">
-                      {Array.from({ length: t.rating }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-yolk text-yolk" />
-                      ))}
-                    </div>
-                    <div className="mt-5 flex gap-3">
-                      <Quote className="h-6 w-6 shrink-0 text-muted-foreground/40" />
-                      <p className="font-display text-lg leading-relaxed sm:text-xl">"{t.content}"</p>
-                    </div>
-                  </div>
-                  <div>
-                    <Separator className="my-5" />
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-11 w-11 border border-border">
-                        <AvatarImage src={t.avatar} alt={t.name} loading="lazy" />
-                        <AvatarFallback>{t.name.charAt(0)}</AvatarFallback>
-                      </Avatar>
+          {/* Right: active card (auto-height, crossfaded on rotation) */}
+          <motion.div variants={itemVariants}>
+            <div className="relative">
+              <AnimatePresence initial={false} mode="popLayout">
+                {(() => {
+                  const t = testimonials[activeIndex]!
+                  return (
+                    <motion.article
+                      key={t.id}
+                      initial={{ opacity: 0, y: 22, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -16, scale: 0.96 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="flex flex-col justify-between rounded-3xl border border-border bg-card p-8 shadow-soft"
+                    >
                       <div>
-                        <div className="text-sm font-semibold">{t.name}</div>
-                        <div className="text-xs text-muted-foreground">
-                          {t.role}, {t.company}
+                        <div className="flex gap-1">
+                          {Array.from({ length: t.rating }).map((_, i) => (
+                            <Star key={i} className="h-4 w-4 fill-yolk text-yolk" />
+                          ))}
+                        </div>
+                        <div className="mt-5 flex gap-3">
+                          <Quote className="h-6 w-6 shrink-0 text-muted-foreground/40" />
+                          <p className="font-display text-lg leading-relaxed sm:text-xl">"{t.content}"</p>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </motion.article>
-              );
-            })}
-            {/* decorative */}
-            <div aria-hidden className="absolute -right-6 -top-6 -z-10 h-32 w-32 rounded-full bg-yolk/20 blur-3xl" />
-            <div aria-hidden className="absolute -bottom-8 -left-8 -z-10 h-40 w-40 rounded-full bg-foreground/5 blur-3xl" />
+                      <div>
+                        <Separator className="my-5" />
+                        <div className="flex items-center gap-3">
+                          <Avatar className="h-11 w-11 border border-border">
+                            <AvatarImage src={t.avatar} alt={t.name} loading="lazy" />
+                            <AvatarFallback>{t.name.charAt(0)}</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <div className="text-sm font-semibold">{t.name}</div>
+                            <div className="text-xs text-muted-foreground">
+                              {t.role} · {t.company}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.article>
+                  )
+                })()}
+              </AnimatePresence>
+              {/* decorative */}
+              <div aria-hidden className="pointer-events-none absolute -right-6 -top-6 -z-10 h-32 w-32 rounded-full bg-foreground/[0.07] blur-3xl" />
+              <div aria-hidden className="pointer-events-none absolute -bottom-8 -left-8 -z-10 h-40 w-40 rounded-full bg-foreground/[0.05] blur-3xl" />
+            </div>
           </motion.div>
         </motion.div>
 
@@ -179,5 +189,5 @@ export function AnimatedTestimonials({
         )}
       </div>
     </section>
-  );
+  )
 }

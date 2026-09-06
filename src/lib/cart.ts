@@ -18,6 +18,8 @@ export interface Product {
   deliveryTime: string;
   imageUrl: string;
   category: ProductCategory;
+  /** Short marketing tag shown on the card (e.g. "Più venduta"). */
+  badge?: string;
   /** Stripe Price ID — fill in once Stripe is connected. */
   stripePriceId?: string;
   recurring?: "week";
@@ -43,9 +45,39 @@ export const lineKey = (productId: string, mix: EggMix) => `${productId}:${mix.w
 
 export const eur = (n: number) => n.toFixed(2).replace(".", ",") + " €";
 
+/** Egg colour choices offered per pack. */
+export type MixOptionKey = "white" | "mixed" | "brown";
+
+export const MIX_OPTIONS: Array<{ key: MixOptionKey; label: string }> = [
+  { key: "white", label: "Bianche" },
+  { key: "mixed", label: "Miste" },
+  { key: "brown", label: "Marroni" },
+];
+
+/** Turn a colour choice into concrete white/brown counts for a pack of N eggs. */
+export function mixFor(key: MixOptionKey, eggs: number): EggMix {
+  if (key === "white") return { white: eggs, brown: 0 };
+  if (key === "brown") return { white: 0, brown: eggs };
+  const white = Math.ceil(eggs / 2);
+  return { white, brown: eggs - white };
+}
+
+/** Human summary, e.g. "3 bianche · 3 marroni". */
+export function mixSummary(mix: EggMix): string {
+  const w = mix.white;
+  const b = mix.brown;
+  const white = w === 1 ? "1 bianca" : `${w} bianche`;
+  const brown = b === 1 ? "1 marrone" : `${b} marroni`;
+  if (b === 0) return white;
+  if (w === 0) return brown;
+  return `${white} + ${brown}`;
+}
+
 export function cartTotals(lines: CartLine[]) {
   const subtotal = lines.reduce((s, l) => s + l.qty * l.product.price, 0);
-  const shipping = subtotal === 0 || subtotal >= FREE_SHIPPING_FROM ? 0 : SHIPPING_COST;
+  const hasRecurring = lines.some((l) => l.product.recurring === "week");
+  const shipping =
+    subtotal === 0 || subtotal >= FREE_SHIPPING_FROM || hasRecurring ? 0 : SHIPPING_COST;
   const count = lines.reduce((s, l) => s + l.qty, 0);
   return { subtotal, shipping, total: subtotal + shipping, count };
 }
