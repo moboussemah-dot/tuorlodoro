@@ -35,8 +35,8 @@ export function addTodo(text: string, category?: string, dueDate?: number): Todo
     text,
     completed: false,
     createdAt: Date.now(),
-    dueDate,
-    category,
+    ...(dueDate === undefined ? {} : { dueDate }),
+    ...(category === undefined ? {} : { category }),
   };
   todos.push(newTodo);
   saveTodos(todos);
