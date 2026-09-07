@@ -550,7 +550,7 @@ function Index() {
 
         {/* Left copy */}
         <motion.div
-          initial={{ opacity: 0, y: 26 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative"
@@ -635,7 +635,7 @@ function Index() {
           />
           <motion.div
             aria-hidden
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.25, ease: "easeOut" }}
             className="overflow-hidden rounded-[2rem] border border-foreground/10 bg-shell shadow-yolk"
@@ -652,7 +652,7 @@ function Index() {
 
           {/* floating chips */}
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55 }}
             className="absolute -left-4 top-8 flex items-center gap-3 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-soft backdrop-blur sm:-left-8"
@@ -667,7 +667,7 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
             className="absolute -bottom-5 right-2 flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground px-4 py-2.5 text-background shadow-soft sm:-right-4"
