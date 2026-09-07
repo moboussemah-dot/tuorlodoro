@@ -6,7 +6,19 @@ import { getTodos, addTodo } from '@/lib/storage';
 import type { Todo } from '@/lib/storage';
 import { Settings, Trash2 } from 'lucide-react';
 
-export const Route = createFileRoute('/todos')();
+export const Route = createFileRoute('/todos')({
+  head: () => ({
+    meta: [
+      { title: "Attività — Tuorlo d'Oro" },
+      { name: 'description', content: 'Gestione delle attività di Tuorlo d’Oro.' },
+      { property: 'og:title', content: "Attività — Tuorlo d'Oro" },
+      { property: 'og:description', content: 'Gestione delle attività di Tuorlo d’Oro.' },
+      { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary' },
+    ],
+  }),
+  component: TodosPage,
+});
 
 function TodosPage() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -110,4 +122,3 @@ function TodosPage() {
   );
 }
 
-Route.component = TodosPage;
